@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">kinoafisha</string>
+    <string name="search_films">Поиск фильмов</string>
+    <string name="ganre">Жанр</string>
+    <string name="year">Год</string>
+    <string name="cinemas">Кинотеатры</string>
+    <string name="comments">Коментарии</string>
+</resources>
