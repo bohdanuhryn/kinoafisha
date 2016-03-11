@@ -13,20 +13,14 @@ import android.view.ViewGroup;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.MoviesAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
-import com.bohdanuhryn.kinoafisha.client.KinoParser;
+import com.bohdanuhryn.kinoafisha.client.parser.KinoParser;
 import com.bohdanuhryn.kinoafisha.model.Movie;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,18 +83,12 @@ public class MainFragment extends Fragment {
     }
 
     private void setupMoviesAdapter() {
-        /*
-        moviesArray.add(new Movie("Братья из Гримсби", "", 4.9f));
-        moviesArray.add(new Movie("Ночь Святого Валентина", "", 8.5f));
-        moviesArray.add(new Movie("Кэрол", "", 2.34f));
-        moviesArray.add(new Movie("Дивергент. Глава 3: Преданная", "", 3.5f));
-*/
         moviesAdapter = new MoviesAdapter(moviesArray, getActivity());
         moviesAdapter.setOnItemClickListener(new MoviesAdapter.OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
                 if (mainFragmentListener != null) {
-                    mainFragmentListener.startMovieActivity();
+                    mainFragmentListener.startMovieActivity(moviesArray.get(position));
                 }
             }
         });
@@ -128,6 +116,6 @@ public class MainFragment extends Fragment {
     }
 
     public interface OnMainFragmentListener {
-        public void startMovieActivity();
+        public void startMovieActivity(Movie movie);
     }
 }

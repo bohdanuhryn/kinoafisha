@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bohdanuhryn.kinoafisha.fragments.MainFragment;
+import com.bohdanuhryn.kinoafisha.model.Movie;
 
 public class MainActivity extends AppCompatActivity
         implements MainFragment.OnMainFragmentListener {
@@ -36,8 +37,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void startMovieActivity() {
+    public void startMovieActivity(Movie movie) {
         Intent intent = new Intent(this, MovieActivity.class);
+        intent.putExtra(MovieActivity.MOVIE_ARG, movie);
         startActivity(intent);
     }
 }

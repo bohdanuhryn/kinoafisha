@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.MoviePagerAdapter;
+import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +28,8 @@ import butterknife.ButterKnife;
 public class MovieFragment extends Fragment {
 
     public static final String TAG = "MovieFragment";
+
+    public static final String MOVIE_ARGUMENT = "movie_object";
 
     private View rootView;
 
@@ -42,9 +46,12 @@ public class MovieFragment extends Fragment {
     @Bind(R.id.movie_tabs)
     TabLayout movieTabs;
 
-    public static MovieFragment newInstance() {
+    private Movie movie;
+
+    public static MovieFragment newInstance(Movie movie) {
         MovieFragment fragment = new MovieFragment();
         Bundle args = new Bundle();
+        args.putSerializable(MOVIE_ARGUMENT, movie);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,9 +67,28 @@ public class MovieFragment extends Fragment {
         ButterKnife.bind(this, rootView);
         ((AppCompatActivity)getActivity()).setSupportActionBar((Toolbar) rootView.findViewById(R.id.movie_toolbar));
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        setupMovieViews();
+        readArgs();
+        setupMovieViewsAtStart();
         setupMoviePager();
         return rootView;
+    }
+
+    private void readArgs() {
+        if (getArguments() != null) {
+            movie = (Movie)getArguments().getSerializable(MOVIE_ARGUMENT);
+        }
+        if (movie == null) {
+            movie = new Movie();
+        }
+    }
+
+    private void setupMovieViewsAtStart() {
+        if (movie != null) {
+            nameView.setText(movie.name);
+            Picasso.with(getActivity()).load(movie.smallPosterUrl).into(posterView);
+            ratingView.setText(String.format("%.1f", movie.rating));
+            ratingBar.setRating(movie.rating / 10);
+        }
     }
 
     private void setupMovieViews() {
