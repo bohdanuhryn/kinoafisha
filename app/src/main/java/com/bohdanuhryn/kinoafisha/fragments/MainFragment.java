@@ -4,22 +4,32 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.MoviesAdapter;
+import com.bohdanuhryn.kinoafisha.client.KinoManager;
+import com.bohdanuhryn.kinoafisha.client.KinoParser;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * Created by BohdanUhryn on 10.03.2016.
@@ -52,6 +62,7 @@ public class MainFragment extends Fragment {
         ButterKnife.bind(this, rootView);
         setupMoviesRecyclerView();
         setupMoviesAdapter();
+        loadFilms();
         return rootView;
     }
 
@@ -78,12 +89,12 @@ public class MainFragment extends Fragment {
     }
 
     private void setupMoviesAdapter() {
-        moviesArray = new ArrayList<Movie>();
+        /*
         moviesArray.add(new Movie("Братья из Гримсби", "", 4.9f));
         moviesArray.add(new Movie("Ночь Святого Валентина", "", 8.5f));
         moviesArray.add(new Movie("Кэрол", "", 2.34f));
         moviesArray.add(new Movie("Дивергент. Глава 3: Преданная", "", 3.5f));
-
+*/
         moviesAdapter = new MoviesAdapter(moviesArray, getActivity());
         moviesAdapter.setOnItemClickListener(new MoviesAdapter.OnItemClickListener() {
             @Override
@@ -94,6 +105,26 @@ public class MainFragment extends Fragment {
             }
         });
         moviesRecycler.setAdapter(moviesAdapter);
+    }
+
+    private void loadFilms() {
+        KinoManager.getFilms("").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                try {
+                    moviesArray = KinoParser.parseMovies(response.body().string());
+                    setupMoviesAdapter();
+                }
+                catch (IOException e) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     public interface OnMainFragmentListener {
