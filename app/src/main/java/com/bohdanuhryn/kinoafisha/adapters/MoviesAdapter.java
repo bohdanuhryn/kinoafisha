@@ -5,13 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,10 +48,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             item = movies.get(position);
         }
         if (item != null && holder != null) {
-            holder.nameView.setText(item.name.trim());
-            //Picasso.with(context).load(item.posterUrl).into(holder.posterView);
-            holder.ratingView.setText(String.format("%.2f", item.rating));
-            holder.ratingBarView.setRating(item.rating);
+            holder.nameView.setText(item.name);
+            Picasso.with(context).load(item.smallPosterUrl).into(holder.posterView);
+            holder.ratingView.setText(String.format("%.1f", item.rating));
+            holder.ratingBarView.setRating(item.rating / 10);
         }
     }
 
