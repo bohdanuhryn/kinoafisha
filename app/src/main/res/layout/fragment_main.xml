@@ -31,6 +31,8 @@
 
         </android.support.v7.widget.Toolbar>
 
+        <!--
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,11 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="@string/ganre"
-                android:textSize="16sp"/>
+                android:text="@string/city"
+                android:textSize="14sp"/>
 
             <Spinner
-                android:id="@+id/search_ganre"
+                android:id="@+id/search_city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"/>
@@ -68,11 +70,75 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:text="@string/date"
+                android:textSize="14sp"/>
+
+            <Spinner
+                android:id="@+id/search_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/half_padding"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/cinema"
+                android:textSize="14sp"/>
+
+            <Spinner
+                android:id="@+id/search_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/half_padding"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/ganre"
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:id="@+id/search_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
                 android:text="@string/year"
                 android:textSize="16sp"/>
 
             <Spinner
-                android:id="@+id/search_ganre"
+                android:id="@+id/search_year"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"/>
@@ -112,10 +178,17 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/movies_recycler"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/movies_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/movies_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>

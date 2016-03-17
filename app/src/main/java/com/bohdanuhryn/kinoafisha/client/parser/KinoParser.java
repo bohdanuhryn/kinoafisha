@@ -2,8 +2,8 @@ package com.bohdanuhryn.kinoafisha.client.parser;
 
 import android.util.Log;
 
-import com.bohdanuhryn.kinoafisha.model.Cinema;
 import com.bohdanuhryn.kinoafisha.model.Comment;
+import com.bohdanuhryn.kinoafisha.model.Cinema;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 
 import org.jsoup.Jsoup;
@@ -29,7 +29,7 @@ public class KinoParser {
 
     private static final String LIST_FILMS = "list-films";
     private static final String PHOTO = "photo";
-    private static final String RATING = "rating";
+    private static final String RATING = "vote";
     private static final String STAR = "star";
 
     public static ArrayList<Movie> parseMovies(String htmlStr) {
@@ -51,19 +51,19 @@ public class KinoParser {
                     mov.url = BASE_URL + tempElements.first().attr("href").toString();
                     // parsing of movie poster
                     if (tempElements.first().getElementsByTag(IMG).size() > 0) {
-                        mov.smallPosterUrl = BASE_URL + tempElements.first().getElementsByTag(IMG).first().attr("src").toString();
+                        mov.image = BASE_URL + tempElements.first().getElementsByTag(IMG).first().attr("src").toString();
                     }
                 }
-                // parsing of movie rating
+                // parsing of movie vote
                 tempElements = m.getElementsByClass(RATING);
                 if (tempElements.size() > 0) {
                     try {
                         String s = tempElements.first().ownText().replace(',', '.');
-                        mov.rating = Float.valueOf(s.substring(0, s.length() - 1));
+                        mov.vote = s.substring(0, s.length() - 1);
                     }
                     catch (Exception e) {
                         Log.e("KinoParser", e.getMessage());
-                        mov.rating = 0;
+                        mov.vote = "0";
                     }
                 }
                 array.add(mov);

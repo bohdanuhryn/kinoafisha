@@ -11,16 +11,27 @@ public class Movie implements Serializable {
 
     }
 
-    public Movie(String name, String smallPosterUrl, float rating) {
+    public Movie(String name, String image, String vote) {
         this.name = name;
-        this.smallPosterUrl = smallPosterUrl;
-        this.rating = rating;
+        this.image = image;
+        this.vote = vote;
     }
 
-    public String url;
+    public long id;
     public String name;
-    public String smallPosterUrl;
+    public String url;
+    public String image;
     public String bigPosterUrl;
-    public float rating;
+    public String vote;
+    public String count_vote;
+    public boolean imdb;
+    public String countries;
+    public String actors;
+    public String rejisser;
+    public int comments_count;
+    public int reviews_count;
+    public int trailers_count;
+    public int photos_count;
+    public boolean is3d;
 
 }

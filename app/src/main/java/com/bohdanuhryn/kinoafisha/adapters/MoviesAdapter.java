@@ -10,6 +10,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
+import com.bohdanuhryn.kinoafisha.client.KinoManager;
+import com.bohdanuhryn.kinoafisha.common.ConvertersUtils;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -49,9 +51,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         }
         if (item != null && holder != null) {
             holder.nameView.setText(item.name);
-            Picasso.with(context).load(item.smallPosterUrl).into(holder.posterView);
-            holder.ratingView.setText(String.format("%.1f", item.rating));
-            holder.ratingBarView.setRating(item.rating / 10);
+            Picasso.with(context).load(KinoManager.getFullUrl(item.image)).into(holder.posterView);
+            holder.ratingView.setText(item.vote);
+            holder.ratingBarView.setRating(ConvertersUtils.getFloatFromString(item.vote) / 10);
         }
     }
 

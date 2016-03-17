@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.MoviePagerAdapter;
+import com.bohdanuhryn.kinoafisha.client.KinoManager;
+import com.bohdanuhryn.kinoafisha.common.ConvertersUtils;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -85,9 +87,9 @@ public class MovieFragment extends Fragment {
     private void setupMovieViewsAtStart() {
         if (movie != null) {
             nameView.setText(movie.name);
-            Picasso.with(getActivity()).load(movie.smallPosterUrl).into(posterView);
-            ratingView.setText(String.format("%.1f", movie.rating));
-            ratingBar.setRating(movie.rating / 10);
+            Picasso.with(getActivity()).load(KinoManager.getFullUrl(movie.image)).into(posterView);
+            ratingView.setText(movie.vote);
+            ratingBar.setRating(ConvertersUtils.getFloatFromString(movie.vote) / 10);
         }
     }
 

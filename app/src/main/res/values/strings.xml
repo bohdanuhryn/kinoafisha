@@ -1,8 +1,83 @@
 <resources>
     <string name="app_name">kinoafisha</string>
     <string name="search_films">Поиск фильмов</string>
+    <string name="city">Город</string>
+    <string name="date">Дата</string>
+    <string name="cinema">Кинотеатр</string>
     <string name="ganre">Жанр</string>
     <string name="year">Год</string>
     <string name="cinemas">Кинотеатры</string>
     <string name="comments">Коментарии</string>
+
+    <string name="year_bottom">до 2000</string>
+    <string name="year_all">Все</string>
+
+    <integer-array name="genres_ids">
+        <item>0</item>
+        <item>29</item>
+        <item>32</item>
+        <item>22</item>
+        <item>5</item>
+        <item>17</item>
+        <item>24</item>
+        <item>18</item>
+        <item>14</item>
+        <item>3</item>
+        <item>15</item>
+        <item>4</item>
+        <item>25</item>
+        <item>21</item>
+        <item>12</item>
+        <item>16</item>
+        <item>26</item>
+        <item>6</item>
+        <item>9</item>
+        <item>28</item>
+        <item>7</item>
+        <item>31</item>
+        <item>19</item>
+        <item>27</item>
+        <item>33</item>
+        <item>2</item>
+        <item>8</item>
+        <item>1</item>
+        <item>10</item>
+        <item>13</item>
+        <item>20</item>
+    </integer-array>
+
+    <string-array name="genres_names">
+        <item>Все</item>
+        <item>Анимация</item>
+        <item>Аниме</item>
+        <item>Биография</item>
+        <item>Боевик</item>
+        <item>Вестерн</item>
+        <item>Военный</item>
+        <item>Детектив</item>
+        <item>Документальный</item>
+        <item>Драма</item>
+        <item>Исторический</item>
+        <item>Комедия</item>
+        <item>Концерт</item>
+        <item>Криминал</item>
+        <item>Мелодрама</item>
+        <item>Мистика</item>
+        <item>Музыка</item>
+        <item>Мультфильм</item>
+        <item>Мюзыкл</item>
+        <item>Научно-популярный</item>
+        <item>Приключения</item>
+        <item>Сборник короткометражек</item>
+        <item>Семейный</item>
+        <item>Спектакль</item>
+        <item>Спорт</item>
+        <item>Триллер</item>
+        <item>Ужасы</item>
+        <item>Фантастика</item>
+        <item>Фестиваль</item>
+        <item>Фэнтези</item>
+        <item>Экшн</item>
+    </string-array>
+
 </resources>
