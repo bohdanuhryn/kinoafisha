@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_padding"
     android:padding="@dimen/half_padding"
-    android:background="@android:color/holo_blue_dark">
+    android:background="@android:color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"

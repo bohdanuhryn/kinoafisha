@@ -10,6 +10,6 @@ import java.util.ArrayList;
 public class SessionsList {
 
     public boolean succes;
-    public ArrayList<Cinema> result;
+    public ArrayList<CinemaSessions> result;
 
 }

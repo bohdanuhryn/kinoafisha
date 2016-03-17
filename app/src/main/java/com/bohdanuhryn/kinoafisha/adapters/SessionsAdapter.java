@@ -2,6 +2,7 @@ package com.bohdanuhryn.kinoafisha.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,10 +43,12 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.ViewHo
         if (item != null && holder != null) {
             holder.nameView.setText(item.name);
             String sessionsStr = "";
-            for (int i = 0; i < item.h.size(); ++i) {
-                sessionsStr += item.h.get(i).name + "......" + item.h.get(i).sessions + "\n";
+            if (item.h != null) {
+                for (int i = 0; i < item.h.size(); ++i) {
+                    sessionsStr += item.h.get(i).name + "......" + item.h.get(i).sessions + "<br>";
+                }
             }
-            holder.sessionsView.setText(sessionsStr);
+            holder.sessionsView.setText(Html.fromHtml(sessionsStr));
         }
     }
 
