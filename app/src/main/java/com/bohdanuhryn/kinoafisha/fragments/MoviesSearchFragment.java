@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -37,9 +36,9 @@ import retrofit2.Response;
 /**
  * Created by BohdanUhryn on 10.03.2016.
  */
-public class MainFragment extends Fragment {
+public class MoviesSearchFragment extends Fragment {
 
-    public static final String TAG = "MainFragment";
+    public static final String TAG = "MoviesSearchFragment";
 
     private final String SAVED_SEARCH_PARAMS = "saved_movie_search_params";
 
@@ -69,8 +68,8 @@ public class MainFragment extends Fragment {
 
     private OnMainFragmentListener mainFragmentListener;
 
-    public static MainFragment newInstance() {
-        MainFragment fragment = new MainFragment();
+    public static MoviesSearchFragment newInstance() {
+        MoviesSearchFragment fragment = new MoviesSearchFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -79,7 +78,7 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_movies_search, container, false);
         ButterKnife.bind(this, rootView);
         checkSearchParams(savedInstanceState);
         setupMoviesRecyclerView();

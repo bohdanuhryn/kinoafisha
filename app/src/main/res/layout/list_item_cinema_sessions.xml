@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_padding"
+    android:padding="@dimen/half_padding"
+    android:background="@android:color/holo_blue_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cinema_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:autoLink="all"
+            tools:text="Cinema name"/>
+
+        <ImageButton
+            android:id="@+id/cinema_map_button"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:src="@android:drawable/ic_dialog_map"
+            android:background="@android:color/transparent"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/cinema_sessions_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/double_padding"
+        android:paddingRight="@dimen/half_padding"
+        tools:text="Hall 1......18.00"/>
+
+</LinearLayout>

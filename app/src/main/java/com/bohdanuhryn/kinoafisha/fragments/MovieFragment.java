@@ -43,6 +43,12 @@ public class MovieFragment extends Fragment {
     RatingBar ratingBar;
     @Bind(R.id.movie_poster)
     ImageView posterView;
+    @Bind(R.id.movie_countries)
+    TextView countriesView;
+    @Bind(R.id.movie_actors)
+    TextView actorsView;
+    @Bind(R.id.movie_rejisser)
+    TextView rejisserView;
     @Bind(R.id.movie_pager)
     ViewPager moviePager;
     @Bind(R.id.movie_tabs)
@@ -90,6 +96,9 @@ public class MovieFragment extends Fragment {
             Picasso.with(getActivity()).load(KinoManager.getFullUrl(movie.image)).into(posterView);
             ratingView.setText(movie.vote);
             ratingBar.setRating(ConvertersUtils.getFloatFromString(movie.vote) / 10);
+            countriesView.setText(movie.countries);
+            actorsView.setText(movie.actors);
+            rejisserView.setText(movie.rejisser);
         }
     }
 
@@ -98,7 +107,7 @@ public class MovieFragment extends Fragment {
     }
 
     private void setupMoviePager() {
-        MoviePagerAdapter adapter = new MoviePagerAdapter(getActivity(), getActivity().getSupportFragmentManager());
+        MoviePagerAdapter adapter = new MoviePagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), movie);
         moviePager.setAdapter(adapter);
         movieTabs.setTabsFromPagerAdapter(adapter);
         moviePager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabs));

@@ -1,15 +1,11 @@
 package com.bohdanuhryn.kinoafisha.client;
 
-import android.util.Pair;
-
 import com.bohdanuhryn.kinoafisha.model.parameters.MovieSearchParams;
 import com.bohdanuhryn.kinoafisha.model.parameters.MovieSearchQuery;
+import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
+import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
@@ -53,6 +49,27 @@ public class KinoManager {
                     params.offset,
                     getSearchQueryString(params.query)
             );
+        }
+        return call;
+    }
+
+    public static Call<SessionsList> getMovieSessionsList(long film, long date, long city) {
+        Call<SessionsList> call = null;
+        if (init()) {
+            IKinoApi apiService = retrofit.create(IKinoApi.class);
+            String fs = String.valueOf(film);
+            String ds = date == 0 ? "0" : String.valueOf(date);
+            String cs = city == 0 ? "0" : String.valueOf(city);
+            call = apiService.getMovieSessionsList(fs, ds, cs);
+        }
+        return call;
+    }
+
+    public static Call<CommentsList> getMovieCommentsList(String film, long page) {
+        Call<CommentsList> call = null;
+        if (init()) {
+            IKinoApi apiService = retrofit.create(IKinoApi.class);
+            call = apiService.getMovieCommentsList(film, page);
         }
         return call;
     }

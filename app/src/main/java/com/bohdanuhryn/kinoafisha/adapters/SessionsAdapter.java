@@ -1,0 +1,71 @@
+package com.bohdanuhryn.kinoafisha.adapters;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.bohdanuhryn.kinoafisha.R;
+import com.bohdanuhryn.kinoafisha.model.Cinema;
+
+import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+/**
+ * Created by BohdanUhryn on 17.03.2016.
+ */
+public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.ViewHolder> {
+
+    private Context context;
+    private ArrayList<Cinema> sessions;
+
+    public SessionsAdapter(ArrayList<Cinema> sessions, Context context) {
+        this.sessions = sessions;
+        this.context = context;
+    }
+
+    @Override
+    public int getItemCount() {
+        return sessions != null ? sessions.size() : 0;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Cinema item = null;
+        if (sessions != null) {
+            item = sessions.get(position);
+        }
+        if (item != null && holder != null) {
+            holder.nameView.setText(item.name);
+            String sessionsStr = "";
+            for (int i = 0; i < item.h.size(); ++i) {
+                sessionsStr += item.h.get(i).name + "......" + item.h.get(i).sessions + "\n";
+            }
+            holder.sessionsView.setText(sessionsStr);
+        }
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_cinema_sessions, parent, false);
+        ViewHolder vh = new ViewHolder(view);
+        return vh;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.cinema_name)
+        TextView nameView;
+        @Bind(R.id.cinema_sessions_list)
+        TextView sessionsView;
+
+        public ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+}

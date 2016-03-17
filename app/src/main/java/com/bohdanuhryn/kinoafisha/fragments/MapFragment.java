@@ -7,33 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bohdanuhryn.kinoafisha.R;
-
 /**
- * Created by BohdanUhryn on 11.03.2016.
+ * Created by BohdanUhryn on 17.03.2016.
  */
-public class CinemasFragment extends Fragment {
+public class MapFragment extends Fragment {
 
-    public static final String TAG = "CinamasFragment";
+    public static final String TAG = "MapFragment";
 
     private View rootView;
 
-    public static CinemasFragment newInstance() {
-        CinemasFragment fragment = new CinemasFragment();
+    public static MapFragment newInstance() {
+        MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public CinemasFragment() {
+    public MapFragment() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_cinemas, container, false);
-        return rootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 }
