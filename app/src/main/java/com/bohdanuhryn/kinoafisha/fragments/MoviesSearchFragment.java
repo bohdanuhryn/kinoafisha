@@ -61,6 +61,8 @@ public class MoviesSearchFragment extends Fragment {
     @Bind(R.id.search_all_button)
     ImageButton searchAllButton;
 
+    private String[] genresNamesArray;
+    private int[] genresIdsArray;
     private ArrayList<String> yearsArray;
 
     private MovieSearchParams searchParams;
@@ -87,6 +89,7 @@ public class MoviesSearchFragment extends Fragment {
         setupMoviesSwipeRefreshLayout();
         setupSearchButton();
         setupSearchAllButton();
+        setupGenresArrays();
         setupGenreSpinner();
         setupYearSpinner();
         reloadFilms();
@@ -178,11 +181,23 @@ public class MoviesSearchFragment extends Fragment {
         });
     }
 
+    private void setupGenresArrays() {
+        genresNamesArray = getResources().getStringArray(R.array.genres_names);
+        genresIdsArray = getResources().getIntArray(R.array.genres_ids);
+    }
+
     private void setupGenreSpinner() {
+        genreSpinner.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, genresNamesArray));
         genreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                if (position == 0) {
+                    searchParams.query.genre = "";
+                } else {
+                    searchAllButton.setVisibility(View.VISIBLE);
+                    searchParams.query.genre = String.valueOf(genresIdsArray[position]);
+                }
+                reloadFilms();
             }
 
             @Override
@@ -211,8 +226,10 @@ public class MoviesSearchFragment extends Fragment {
                 if (position == 0) {
                     searchParams.query.year = "";
                 } else if (position == yearsArray.size() - 1) {
+                    searchAllButton.setVisibility(View.VISIBLE);
                     searchParams.query.year = "2000";
                 } else {
+                    searchAllButton.setVisibility(View.VISIBLE);
                     searchParams.query.year = yearsArray.get(position);
                 }
                 reloadFilms();
