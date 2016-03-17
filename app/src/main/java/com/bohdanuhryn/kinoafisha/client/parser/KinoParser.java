@@ -107,7 +107,7 @@ public class KinoParser {
             // parsing of comment description
             tempElement = c.getElementsByAttributeValue(ITEMPROP_ATTR, DESCRIPTION_PROP);
             if (tempElement.size() > 0) {
-                comment.date = tempElement.first().text();
+                comment.description = tempElement.first().text();
             }
             array.add(comment);
         }

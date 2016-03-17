@@ -34,4 +34,11 @@ public class Movie implements Serializable {
     public int photos_count;
     public boolean is3d;
 
+    public String getFilmNameFromUrl() {
+        String n = "";
+        int p = url.lastIndexOf("/");
+        n = url.substring(p + 1);
+        return n;
+    }
+
 }

@@ -14,6 +14,7 @@ import com.bohdanuhryn.kinoafisha.adapters.CommentsAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
 import com.bohdanuhryn.kinoafisha.client.parser.KinoParser;
 import com.bohdanuhryn.kinoafisha.model.Comment;
+import com.bohdanuhryn.kinoafisha.model.Movie;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class CommentsFragment extends Fragment {
 
     public static final String TAG = "CommentsFragment";
 
-    private static final String FILM_URL_ARG = "film_url_arg";
+    private static final String MOVIE_ARG = "movie_arg";
 
     private View rootView;
     @Bind(R.id.comments_recycler)
@@ -40,14 +41,14 @@ public class CommentsFragment extends Fragment {
     private LinearLayoutManager commentsLayoutManager;
     private CommentsAdapter commentsAdapter;
 
-    private String filmUrl;
+    private Movie movie;
 
     private ArrayList<Comment> commentsArray;
 
-    public static CommentsFragment newInstance(String filmUrl) {
+    public static CommentsFragment newInstance(Movie movie) {
         CommentsFragment fragment = new CommentsFragment();
         Bundle args = new Bundle();
-        args.putString(FILM_URL_ARG, filmUrl);
+        args.putSerializable(MOVIE_ARG, movie);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,7 +72,7 @@ public class CommentsFragment extends Fragment {
     private void readArguments() {
         Bundle args = getArguments();
         if (args != null) {
-            filmUrl = args.getString(FILM_URL_ARG, "");
+            movie = (Movie)args.getSerializable(MOVIE_ARG);
         }
     }
 
@@ -86,7 +87,10 @@ public class CommentsFragment extends Fragment {
     }
 
     private void reloadComments() {
-        KinoManager.getMovieCommentsList(filmUrl, 1).enqueue(new Callback<ResponseBody>() {
+        if (movie == null) {
+            return;
+        }
+        KinoManager.getMovieCommentsList(movie.getFilmNameFromUrl(), 1).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {

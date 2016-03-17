@@ -2,9 +2,11 @@ package com.bohdanuhryn.kinoafisha.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,7 +48,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             Picasso.with(context).load(KinoManager.getFullUrl(item.avatar)).into(holder.avatarView);
             holder.authorView.setText(item.author);
             holder.dateView.setText(item.date);
-            holder.descriptionView.setText(item.description);
+            holder.descriptionView.setText(Html.fromHtml(item.description));
+            //holder.descriptionView.loadData(item.description, "text/html", "UTF-8");
         }
     }
 
@@ -67,6 +70,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         TextView dateView;
         @Bind(R.id.comment_description)
         TextView descriptionView;
+        //WebView descriptionView;
 
         public ViewHolder(View view) {
             super(view);
