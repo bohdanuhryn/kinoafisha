@@ -3,7 +3,6 @@ package com.bohdanuhryn.kinoafisha.client.parser;
 import android.util.Log;
 
 import com.bohdanuhryn.kinoafisha.model.Comment;
-import com.bohdanuhryn.kinoafisha.model.Cinema;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 
 import org.jsoup.Jsoup;
@@ -31,6 +30,15 @@ public class KinoParser {
     private static final String PHOTO = "photo";
     private static final String RATING = "vote";
     private static final String STAR = "star";
+
+    private static final String AVATAR_CLASS = "avatar";
+    private static final String AUTHOR_CLASS = "author";
+
+    private static final String ITEMPROP_ATTR = "itemprop";
+    private static final String CONTENT_ATTR = "content";
+
+    private static final String DATE_PROP = "datePublished";
+    private static final String DESCRIPTION_PROP = "description";
 
     public static ArrayList<Movie> parseMovies(String htmlStr) {
         ArrayList<Movie> array = new ArrayList<Movie>();
@@ -72,19 +80,37 @@ public class KinoParser {
         return array;
     }
 
-    public static Movie parseMovie(Movie movie, String htmlStr) {
-        return movie;
-    }
-
-    public static ArrayList<Cinema> parseCinemas(String htmlStr) {
-        ArrayList<Cinema> array = new ArrayList<Cinema>();
-        Document doc = Jsoup.parse(htmlStr);
-        return array;
-    }
-
     public static ArrayList<Comment> parseComments(String htmlStr) {
         ArrayList<Comment> array = new ArrayList<Comment>();
+        Elements tempElement;
         Document doc = Jsoup.parse(htmlStr);
+        Elements comments = doc.getElementsByClass(ITEM);
+        for (Element c : comments) {
+            Comment comment = new Comment();
+            // parsing of comment id
+            comment.id = c.id();
+            // parsing of comment avatar
+            tempElement = c.getElementsByClass(AVATAR_CLASS);
+            if (tempElement.size() > 0 && tempElement.first().getElementsByTag(IMG).size() > 0) {
+                comment.avatar = tempElement.first().getElementsByTag(IMG).first().attr(SRC);
+            }
+            // parsing of comment author
+            tempElement = c.getElementsByClass(AUTHOR_CLASS);
+            if (tempElement.size() > 0) {
+                comment.author = tempElement.first().text();
+            }
+            // parsing of comment date
+            tempElement = c.getElementsByAttributeValue(ITEMPROP_ATTR, DATE_PROP);
+            if (tempElement.size() > 0) {
+                comment.date = tempElement.first().attr(CONTENT_ATTR);
+            }
+            // parsing of comment description
+            tempElement = c.getElementsByAttributeValue(ITEMPROP_ATTR, DESCRIPTION_PROP);
+            if (tempElement.size() > 0) {
+                comment.date = tempElement.first().text();
+            }
+            array.add(comment);
+        }
         return array;
     }
 

@@ -12,13 +12,15 @@ import android.view.ViewGroup;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.CommentsAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
+import com.bohdanuhryn.kinoafisha.client.parser.KinoParser;
 import com.bohdanuhryn.kinoafisha.model.Comment;
-import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,17 +32,22 @@ public class CommentsFragment extends Fragment {
 
     public static final String TAG = "CommentsFragment";
 
+    private static final String FILM_URL_ARG = "film_url_arg";
+
     private View rootView;
     @Bind(R.id.comments_recycler)
     RecyclerView commentsRecycler;
     private LinearLayoutManager commentsLayoutManager;
     private CommentsAdapter commentsAdapter;
 
+    private String filmUrl;
+
     private ArrayList<Comment> commentsArray;
 
-    public static CommentsFragment newInstance() {
+    public static CommentsFragment newInstance(String filmUrl) {
         CommentsFragment fragment = new CommentsFragment();
         Bundle args = new Bundle();
+        args.putString(FILM_URL_ARG, filmUrl);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,7 +71,7 @@ public class CommentsFragment extends Fragment {
     private void readArguments() {
         Bundle args = getArguments();
         if (args != null) {
-            //todo
+            filmUrl = args.getString(FILM_URL_ARG, "");
         }
     }
 
@@ -79,18 +86,24 @@ public class CommentsFragment extends Fragment {
     }
 
     private void reloadComments() {
-        KinoManager.getMovieCommentsList(""/*TODO*/, 0).enqueue(new Callback<CommentsList>() {
+        KinoManager.getMovieCommentsList(filmUrl, 1).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<CommentsList> call, Response<CommentsList> response) {
-                CommentsList result = response.body();
-                if (result.succes) {
-                    commentsArray = result.result;
-                    setupCommentsAdapter();
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    String htmlStr = "";
+                    try {
+                        htmlStr = response.body().string();
+                        commentsArray = KinoParser.parseComments(htmlStr);
+                        setupCommentsAdapter();
+                    }
+                    catch (IOException e) {
+
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<CommentsList> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
         });

@@ -6,6 +6,7 @@ import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
 import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
@@ -65,8 +66,8 @@ public class KinoManager {
         return call;
     }
 
-    public static Call<CommentsList> getMovieCommentsList(String film, long page) {
-        Call<CommentsList> call = null;
+    public static Call<ResponseBody> getMovieCommentsList(String film, long page) {
+        Call<ResponseBody> call = null;
         if (init()) {
             IKinoApi apiService = retrofit.create(IKinoApi.class);
             call = apiService.getMovieCommentsList(film, page);

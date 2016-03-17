@@ -5,12 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
+import com.bohdanuhryn.kinoafisha.client.KinoManager;
 import com.bohdanuhryn.kinoafisha.model.Comment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -38,7 +43,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             item = comments.get(position);
         }
         if (item != null && holder != null) {
-
+            Picasso.with(context).load(KinoManager.getFullUrl(item.avatar)).into(holder.avatarView);
+            holder.authorView.setText(item.author);
+            holder.dateView.setText(item.date);
+            holder.descriptionView.setText(item.description);
         }
     }
 
@@ -50,6 +58,15 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.comment_avatar)
+        ImageView avatarView;
+        @Bind(R.id.comment_author)
+        TextView authorView;
+        @Bind(R.id.comment_date)
+        TextView dateView;
+        @Bind(R.id.comment_description)
+        TextView descriptionView;
 
         public ViewHolder(View view) {
             super(view);

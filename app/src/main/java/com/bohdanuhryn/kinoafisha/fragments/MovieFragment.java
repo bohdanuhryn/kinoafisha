@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,13 +99,12 @@ public class MovieFragment extends Fragment {
             ratingView.setText(movie.vote);
             ratingBar.setRating(ConvertersUtils.getFloatFromString(movie.vote) / 10);
             countriesView.setText(movie.countries);
-            actorsView.setText(movie.actors);
-            rejisserView.setText(movie.rejisser);
+            actorsView.setText(Html.fromHtml(movie.actors));
+            rejisserView.setText(Html.fromHtml(movie.rejisser));
+            countriesView.setMovementMethod(LinkMovementMethod.getInstance());
+            actorsView.setMovementMethod(LinkMovementMethod.getInstance());
+            rejisserView.setMovementMethod(LinkMovementMethod.getInstance());
         }
-    }
-
-    private void setupMovieViews() {
-
     }
 
     private void setupMoviePager() {

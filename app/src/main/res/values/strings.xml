@@ -9,6 +9,10 @@
     <string name="cinemas">Кинотеатры</string>
     <string name="comments">Коментарии</string>
 
+    <string name="country_year">Страна, год: </string>
+    <string name="actors">Актёры: </string>
+    <string name="rejisser">Режиссёр: </string>
+
     <string name="year_bottom">до 2000</string>
     <string name="year_all">Все</string>
 

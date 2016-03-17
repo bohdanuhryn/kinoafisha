@@ -30,7 +30,7 @@ public class MoviePagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return SessionsFragment.newInstance(movie.id);
             case 1:
-                return CommentsFragment.newInstance();
+                return CommentsFragment.newInstance(movie.url);
         }
         return null;
     }

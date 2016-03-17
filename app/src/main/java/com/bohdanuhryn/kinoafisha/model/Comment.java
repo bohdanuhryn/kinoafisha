@@ -5,6 +5,10 @@ package com.bohdanuhryn.kinoafisha.model;
  */
 public class Comment {
 
-    public String text;
+    public String id;
+    public String avatar;
+    public String author;
+    public String date;
+    public String description;
 
 }

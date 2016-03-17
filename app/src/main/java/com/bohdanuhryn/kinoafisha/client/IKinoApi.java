@@ -5,6 +5,7 @@ import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
 import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -37,7 +38,7 @@ public interface IKinoApi {
 
     @FormUrlEncoded
     @POST("/ajax/comment/film/{film_name}")
-    Call<CommentsList> getMovieCommentsList(
+    Call<ResponseBody> getMovieCommentsList(
             @Path("film_name") String filmName,
             @Field("page") long page
     );
