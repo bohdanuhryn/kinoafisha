@@ -1,16 +1,20 @@
 package com.bohdanuhryn.kinoafisha;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bohdanuhryn.kinoafisha.fragments.MovieFragment;
+import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
+import com.bohdanuhryn.kinoafisha.model.Cinema;
 import com.bohdanuhryn.kinoafisha.model.Movie;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
  */
-public class MovieActivity extends AppCompatActivity {
+public class MovieActivity extends AppCompatActivity
+        implements SessionsFragment.OnSessionsFragmentListener {
 
     public static final String TAG = "MovieActivity";
     public static final String MOVIE_ARG = "movie_arg";
@@ -18,6 +22,13 @@ public class MovieActivity extends AppCompatActivity {
     private MovieFragment fragment;
 
     private Movie movie;
+
+    @Override
+    public void onMapActivityStart(Cinema cinema) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra(MapsActivity.CINEMA_ARG, cinema);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

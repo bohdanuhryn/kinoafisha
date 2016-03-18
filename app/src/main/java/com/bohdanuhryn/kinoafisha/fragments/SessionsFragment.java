@@ -1,6 +1,7 @@
 package com.bohdanuhryn.kinoafisha.fragments;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,8 @@ public class SessionsFragment extends Fragment {
     @Bind(R.id.sessions_date)
     TextView dateView;
 
+    private OnSessionsFragmentListener sessionsFragmentListener;
+
     private DatePickerDialog sessionsDateDialog;
     private SimpleDateFormat dateFormatter;
 
@@ -81,6 +84,23 @@ public class SessionsFragment extends Fragment {
         setupSessionsAdapter();
         reloadSessions();
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            sessionsFragmentListener = (OnSessionsFragmentListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnSessionsFragmentListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        sessionsFragmentListener = null;
     }
 
     private void readArguments() {
@@ -131,6 +151,7 @@ public class SessionsFragment extends Fragment {
 
     private void setupSessionsAdapter() {
         sessionsAdapter = new SessionsAdapter(sessionsArray, getActivity());
+        sessionsAdapter.setOnSessionsFragmentListener(sessionsFragmentListener);
         sessionsRecycler.setAdapter(sessionsAdapter);
     }
 
@@ -153,6 +174,10 @@ public class SessionsFragment extends Fragment {
 
             }
         });
+    }
+
+    public interface OnSessionsFragmentListener {
+        void onMapActivityStart(Cinema cinema);
     }
 
 }

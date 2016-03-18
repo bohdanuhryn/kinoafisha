@@ -6,9 +6,11 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
+import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
 import com.bohdanuhryn.kinoafisha.model.Cinema;
 
 import java.util.ArrayList;
@@ -23,10 +25,15 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.ViewHo
 
     private Context context;
     private ArrayList<Cinema> sessions;
+    private SessionsFragment.OnSessionsFragmentListener sessionsFragmentListener;
 
     public SessionsAdapter(ArrayList<Cinema> sessions, Context context) {
         this.sessions = sessions;
         this.context = context;
+    }
+
+    public void setOnSessionsFragmentListener(SessionsFragment.OnSessionsFragmentListener sessionsFragmentListener) {
+        this.sessionsFragmentListener = sessionsFragmentListener;
     }
 
     @Override
@@ -49,6 +56,15 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.ViewHo
                 }
             }
             holder.sessionsView.setText(Html.fromHtml(sessionsStr));
+            final Cinema cinema = item;
+            holder.mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (sessionsFragmentListener != null) {
+                        sessionsFragmentListener.onMapActivityStart(cinema);
+                    }
+                }
+            });
         }
     }
 
@@ -65,6 +81,8 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.ViewHo
         TextView nameView;
         @Bind(R.id.cinema_sessions_list)
         TextView sessionsView;
+        @Bind(R.id.cinema_map_button)
+        ImageButton mapButton;
 
         public ViewHolder(View view) {
             super(view);

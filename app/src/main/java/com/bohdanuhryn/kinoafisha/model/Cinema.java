@@ -1,11 +1,12 @@
 package com.bohdanuhryn.kinoafisha.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
  */
-public class Cinema {
+public class Cinema implements Serializable {
 
     public String name;
     public String url;
