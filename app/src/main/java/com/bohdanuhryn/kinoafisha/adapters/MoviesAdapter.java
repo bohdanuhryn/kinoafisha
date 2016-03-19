@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
 import com.bohdanuhryn.kinoafisha.common.ConvertersUtils;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package com.bohdanuhryn.kinoafisha.client;
 
-import com.bohdanuhryn.kinoafisha.model.Comment;
-import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
+import com.bohdanuhryn.kinoafisha.model.data.Comment;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
 import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
@@ -43,9 +42,12 @@ public interface IKinoApi {
             @Field("page") long page
     );
 
+    @FormUrlEncoded
     @POST("/ajax/comment/film/{film_name}")
     Call<Comment> postComment(
-            @Path("film_name") String filmName
+            @Path("film_name") String filmName,
+            @Field("response_to") String responseTo,
+            @Field("comments") String comments
     );
 
 }

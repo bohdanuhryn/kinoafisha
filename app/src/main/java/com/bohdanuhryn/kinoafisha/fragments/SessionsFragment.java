@@ -10,14 +10,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
+import com.bohdanuhryn.kinoafisha.adapters.CitiesAdapter;
 import com.bohdanuhryn.kinoafisha.adapters.SessionsAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
-import com.bohdanuhryn.kinoafisha.model.Cinema;
+import com.bohdanuhryn.kinoafisha.helpers.CitiesHelper;
+import com.bohdanuhryn.kinoafisha.model.data.Cinema;
+import com.bohdanuhryn.kinoafisha.model.data.City;
 import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +54,8 @@ public class SessionsFragment extends Fragment {
     ImageButton dateButton;
     @Bind(R.id.sessions_date)
     TextView dateView;
+    @Bind(R.id.sessions_city)
+    Spinner citySpinner;
 
     private OnSessionsFragmentListener sessionsFragmentListener;
 
@@ -59,6 +66,7 @@ public class SessionsFragment extends Fragment {
     private long date;
     private long city;
     private ArrayList<Cinema> sessionsArray;
+    private ArrayList<City> citiesArray;
 
     public static SessionsFragment newInstance(long film) {
         SessionsFragment fragment = new SessionsFragment();
@@ -78,6 +86,7 @@ public class SessionsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_sessions, container, false);
         ButterKnife.bind(this, rootView);
         readArguments();
+        setupCitySpinner();
         setupSessionsDateDialog();
         setupDateButton();
         setupSessionsRecyclerView();
@@ -108,6 +117,26 @@ public class SessionsFragment extends Fragment {
         if (args != null) {
             film = args.getLong(FILM_ARG, 0);
         }
+    }
+
+    private void setupCitySpinner() {
+        citiesArray = CitiesHelper.getCities(getActivity());
+        citySpinner.setAdapter(new CitiesAdapter(getActivity(), android.R.layout.simple_spinner_item, citiesArray));
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                city = citiesArray.get(position).id;
+                reloadSessions();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        int nearestCity = CitiesHelper.getNearestCity(getActivity());
+        citySpinner.setSelection(nearestCity);
+        city = citiesArray.get(nearestCity).id;
     }
 
     private void setupSessionsDateDialog() {
@@ -156,7 +185,7 @@ public class SessionsFragment extends Fragment {
     }
 
     private void reloadSessions() {
-        KinoManager.getMovieSessionsList(film, date, 8/*city*/).enqueue(new Callback<SessionsList>() {
+        KinoManager.getMovieSessionsList(film, date, city).enqueue(new Callback<SessionsList>() {
             @Override
             public void onResponse(Call<SessionsList> call, Response<SessionsList> response) {
                 SessionsList result = response.body();

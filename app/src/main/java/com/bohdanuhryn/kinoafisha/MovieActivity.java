@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bohdanuhryn.kinoafisha.fragments.MovieFragment;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
-import com.bohdanuhryn.kinoafisha.model.Cinema;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Cinema;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.

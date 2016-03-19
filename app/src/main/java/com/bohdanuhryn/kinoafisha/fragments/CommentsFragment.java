@@ -13,8 +13,8 @@ import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.CommentsAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
 import com.bohdanuhryn.kinoafisha.client.parser.KinoParser;
-import com.bohdanuhryn.kinoafisha.model.Comment;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Comment;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 import java.io.IOException;
 import java.util.ArrayList;

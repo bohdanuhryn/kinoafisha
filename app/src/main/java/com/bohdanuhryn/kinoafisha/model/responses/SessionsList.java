@@ -1,7 +1,5 @@
 package com.bohdanuhryn.kinoafisha.model.responses;
 
-import com.bohdanuhryn.kinoafisha.model.Cinema;
-
 import java.util.ArrayList;
 
 /**

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
-import com.bohdanuhryn.kinoafisha.model.Cinema;
+import com.bohdanuhryn.kinoafisha.model.data.Cinema;
 
 import java.util.ArrayList;
 

@@ -3,8 +3,8 @@ package com.bohdanuhryn.kinoafisha;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
-import com.bohdanuhryn.kinoafisha.model.Cinema;
-import com.bohdanuhryn.kinoafisha.model.CinemaMapMarker;
+import com.bohdanuhryn.kinoafisha.model.data.Cinema;
+import com.bohdanuhryn.kinoafisha.model.data.CinemaMapMarker;
 import com.bohdanuhryn.kinoafisha.model.converters.CinemaMapMarkerConverter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

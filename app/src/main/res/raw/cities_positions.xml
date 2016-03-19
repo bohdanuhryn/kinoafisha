@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cities>
+
+    <city value="1" lon="30.5234" lat="50.4501">Киев</city>
+    <city value="50" lon="38.8" lat="48.4667">Алчевск</city>
+    <city value="49" lon="37.997" lat="48.6069">Артемовск</city>
+    <city value="45" lon="30.1152" lat="49.8019">Белая Церковь</city>
+    <city value="64" lon="28.5879" lat="49.9079">Бердичев</city>
+    <city value="47" lon="30.9562" lat="50.3482">Борисполь</city>
+    <city value="35" lon="30.7909" lat="50.5111">Бровары</city>
+    <city value="43" lon="30.2135" lat="50.5533">Буча</city>
+    <city value="7" lon="28.4682" lat="49.2331">Винница</city>
+    <city value="44" lon="38.0296" lat="48.3071">Горловка</city>
+    <city value="63" lon="34.6137" lat="48.5231">Днепродзержинск</city>
+    <city value="6" lon="35.0462" lat="48.4647">Днепропетровск</city>
+    <city value="4" lon="37.8029" lat="48.0159">Донецк</city>
+    <city value="27" lon="33.3669" lat="45.1905">Евпатория</city>
+    <city value="17" lon="28.6587" lat="50.2547">Житомир</city>
+    <city value="9" lon="35.1396" lat="47.8388">Запорожье</city>
+    <city value="22" lon="24.7111" lat="48.9226">Ивано-Франковск</city>
+    <city value="41" lon="30.2398" lat="50.5188">Ирпень</city>
+    <city value="55" lon="26.5833" lat="48.6833">Каменец-Подольский</city>
+    <city value="53" lon="36.4683" lat="45.3573">Керчь</city>
+    <city value="23" lon="32.2623" lat="48.5079">Кировоград</city>
+    <city value="62" lon="24.7093" lat="51.2142">Ковель</city>
+    <city value="34" lon="25.0403" lat="48.5306">Коломыя</city>
+    <city value="48" lon="37.5844" lat="48.739">Краматорск</city>
+    <city value="46" lon="33.41" lat="49.0658">Кременчуг</city>
+    <city value="30" lon="33.3918" lat="47.9105">Кривой Рог</city>
+    <city value="60" lon="33" lat="50.0167">Лубны</city>
+    <city value="12" lon="39.3078" lat="48.574">Луганск</city>
+    <city value="21" lon="25.3254" lat="50.7472">Луцк</city>
+    <city value="8" lon="24.0297" lat="49.8397">Львов</city>
+    <city value="32" lon="37.5434" lat="47.0971">Мариуполь</city>
+    <city value="33" lon="22.7058" lat="48.429">Мукачево</city>
+    <city value="19" lon="31.9946" lat="46.975">Николаев</city>
+    <city value="61" lon="34.3948" lat="47.5675">Никополь</city>
+    <city value="38" lon="33.3667" lat="46.7667">Новая Каховка</city>
+    <city value="3" lon="30.7326" lat="46.4846">Одесса</city>
+    <city value="31" lon="35.8934" lat="48.5216">Павлоград</city>
+    <city value="13" lon="34.5514" lat="49.5883">Полтава</city>
+    <city value="24" lon="25.2516" lat="50.6199">Ровно</city>
+    <city value="40" lon="33.5254" lat="44.6167">Севастополь</city>
+    <city value="36" lon="38.5" lat="48.9333">Северодонецк</city>
+    <city value="5" lon="34.1024" lat="44.9521">Симферополь</city>
+    <city value="14" lon="34.7981" lat="50.9077">Сумы</city>
+    <city value="25" lon="25.5948" lat="49.5535">Тернополь</city>
+    <city value="18" lon="22.2879" lat="48.6208">Ужгород</city>
+    <city value="51" lon="29.9153" lat="50.0803">Фастов</city>
+    <city value="29" lon="35.3824" lat="45.0319">Феодосия</city>
+    <city value="2" lon="36.2304" lat="49.9935">Харьков</city>
+    <city value="15" lon="32.6169" lat="46.6354">Херсон</city>
+    <city value="16" lon="26.9871" lat="49.423">Хмельницкий</city>
+    <city value="10" lon="32.0598" lat="49.4444">Черкассы</city>
+    <city value="20" lon="31.2894" lat="51.4982">Чернигов</city>
+    <city value="11" lon="25.9352" lat="48.2917">Черновцы</city>
+    <city value="26" lon="34.1663" lat="44.4952">Ялта</city>
+
+</cities>

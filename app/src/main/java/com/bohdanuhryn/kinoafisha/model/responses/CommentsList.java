@@ -1,6 +1,6 @@
 package com.bohdanuhryn.kinoafisha.model.responses;
 
-import com.bohdanuhryn.kinoafisha.model.Comment;
+import com.bohdanuhryn.kinoafisha.model.data.Comment;
 
 import java.io.Serializable;
 import java.util.ArrayList;

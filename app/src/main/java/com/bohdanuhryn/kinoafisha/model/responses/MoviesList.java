@@ -1,6 +1,6 @@
 package com.bohdanuhryn.kinoafisha.model.responses;
 
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 import java.io.Serializable;
 import java.util.ArrayList;

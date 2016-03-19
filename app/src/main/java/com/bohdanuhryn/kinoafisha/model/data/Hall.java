@@ -1,4 +1,4 @@
-package com.bohdanuhryn.kinoafisha.model;
+package com.bohdanuhryn.kinoafisha.model.data;
 
 import java.io.Serializable;
 

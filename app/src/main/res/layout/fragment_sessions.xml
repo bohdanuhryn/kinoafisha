@@ -21,7 +21,7 @@
             android:textSize="14sp"/>
 
         <Spinner
-            android:id="@+id/movie_sessions_city"
+            android:id="@+id/sessions_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"/>

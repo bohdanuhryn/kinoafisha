@@ -1,4 +1,4 @@
-package com.bohdanuhryn.kinoafisha.model;
+package com.bohdanuhryn.kinoafisha.model.data;
 
 import com.google.android.gms.maps.model.LatLng;
 

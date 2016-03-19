@@ -2,8 +2,8 @@ package com.bohdanuhryn.kinoafisha.model.converters;
 
 import android.util.Log;
 
-import com.bohdanuhryn.kinoafisha.model.Cinema;
-import com.bohdanuhryn.kinoafisha.model.CinemaMapMarker;
+import com.bohdanuhryn.kinoafisha.model.data.Cinema;
+import com.bohdanuhryn.kinoafisha.model.data.CinemaMapMarker;
 import com.google.android.gms.maps.model.LatLng;
 
 /**

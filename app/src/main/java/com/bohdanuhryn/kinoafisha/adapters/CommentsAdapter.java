@@ -6,13 +6,12 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
-import com.bohdanuhryn.kinoafisha.model.Comment;
+import com.bohdanuhryn.kinoafisha.model.data.Comment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

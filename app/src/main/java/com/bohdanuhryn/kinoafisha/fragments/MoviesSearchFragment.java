@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.adapters.MoviesAdapter;
 import com.bohdanuhryn.kinoafisha.client.KinoManager;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 import com.bohdanuhryn.kinoafisha.model.parameters.MovieSearchParams;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
 import com.bohdanuhryn.food2fork.utils.EndlessRecyclerOnScrollListener;

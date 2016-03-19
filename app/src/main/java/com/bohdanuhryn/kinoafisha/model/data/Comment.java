@@ -1,4 +1,4 @@
-package com.bohdanuhryn.kinoafisha.model;
+package com.bohdanuhryn.kinoafisha.model.data;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.

@@ -2,8 +2,8 @@ package com.bohdanuhryn.kinoafisha.client.parser;
 
 import android.util.Log;
 
-import com.bohdanuhryn.kinoafisha.model.Comment;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Comment;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

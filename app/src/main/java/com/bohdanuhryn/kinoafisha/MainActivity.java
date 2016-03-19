@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bohdanuhryn.kinoafisha.fragments.MoviesSearchFragment;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 public class MainActivity extends AppCompatActivity
         implements MoviesSearchFragment.OnMainFragmentListener {

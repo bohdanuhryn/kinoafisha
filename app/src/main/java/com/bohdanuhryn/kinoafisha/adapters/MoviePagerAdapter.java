@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.fragments.CommentsFragment;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
-import com.bohdanuhryn.kinoafisha.model.Movie;
+import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
