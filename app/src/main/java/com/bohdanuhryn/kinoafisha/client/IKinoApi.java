@@ -16,8 +16,16 @@ import retrofit2.http.Path;
  */
 public interface IKinoApi {
 
+    @FormUrlEncoded
     @POST("/ajax/kinoafisha_load")
-    Call<MoviesList> getKinoafisha();
+    Call<MoviesList> getKinoafishaList(
+            @Field("limit") int limit,
+            @Field("offset") int offset,
+            @Field("kinoteatr") String kinoteatr,
+            @Field("date") String date,
+            @Field("city") String city,
+            @Field("sort") String sort
+    );
 
     @FormUrlEncoded
     @POST("/ajax/films_load2")

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.bohdanuhryn.kinoafisha.fragments.MovieFragment;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
@@ -35,7 +36,21 @@ public class MovieActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_host);
         readArgs();
+        if (movie != null) {
+            getSupportActionBar().setTitle(movie.name);
+        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initFragment(savedInstanceState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void readArgs() {

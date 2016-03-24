@@ -37,20 +37,6 @@ public class MovieFragment extends Fragment {
 
     private View rootView;
 
-    @Bind(R.id.movie_name)
-    TextView nameView;
-    @Bind(R.id.movie_rating)
-    TextView ratingView;
-    @Bind(R.id.movie_rating_bar)
-    RatingBar ratingBar;
-    @Bind(R.id.movie_poster)
-    ImageView posterView;
-    @Bind(R.id.movie_countries)
-    TextView countriesView;
-    @Bind(R.id.movie_actors)
-    TextView actorsView;
-    @Bind(R.id.movie_rejisser)
-    TextView rejisserView;
     @Bind(R.id.movie_pager)
     ViewPager moviePager;
     @Bind(R.id.movie_tabs)
@@ -75,10 +61,7 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_movie, container, false);
         ButterKnife.bind(this, rootView);
-        ((AppCompatActivity)getActivity()).setSupportActionBar((Toolbar) rootView.findViewById(R.id.movie_toolbar));
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         readArgs();
-        setupMovieViewsAtStart();
         setupMoviePager();
         return rootView;
     }
@@ -89,21 +72,6 @@ public class MovieFragment extends Fragment {
         }
         if (movie == null) {
             movie = new Movie();
-        }
-    }
-
-    private void setupMovieViewsAtStart() {
-        if (movie != null) {
-            nameView.setText(movie.name);
-            Picasso.with(getActivity()).load(KinoManager.getFullUrl(movie.image)).into(posterView);
-            ratingView.setText(movie.vote);
-            ratingBar.setRating(ConvertersUtils.getFloatFromString(movie.vote) / 10);
-            countriesView.setText(movie.countries);
-            actorsView.setText(Html.fromHtml(movie.actors));
-            rejisserView.setText(Html.fromHtml(movie.rejisser));
-            countriesView.setMovementMethod(LinkMovementMethod.getInstance());
-            actorsView.setMovementMethod(LinkMovementMethod.getInstance());
-            rejisserView.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 

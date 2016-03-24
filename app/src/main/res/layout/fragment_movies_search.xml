@@ -1,188 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:padding="@dimen/half_padding"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryLight">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/ganre"
+            android:textSize="16sp"/>
 
-            <LinearLayout
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
+        <Spinner
+            android:id="@+id/search_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/search_films"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/year"
+            android:textSize="16sp"/>
 
-        </android.support.v7.widget.Toolbar>
+        <Spinner
+            android:id="@+id/search_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"/>
 
-        <!--
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryLight">
+
+        <EditText
+            android:id="@+id/search_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/half_padding"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:layout_weight="1"
+            android:padding="@dimen/half_padding"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/city"
-                android:textSize="14sp"/>
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="@dimen/squre_button_size"
+            android:layout_height="@dimen/squre_button_size"
+            android:src="@android:drawable/ic_menu_search"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"/>
 
-            <Spinner
-                android:id="@+id/search_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+        <ImageButton
+            android:id="@+id/search_all_button"
+            android:layout_width="@dimen/squre_button_size"
+            android:layout_height="@dimen/squre_button_size"
+            android:visibility="gone"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/half_padding"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/date"
-                android:textSize="14sp"/>
-
-            <Spinner
-                android:id="@+id/search_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/half_padding"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/cinema"
-                android:textSize="14sp"/>
-
-            <Spinner
-                android:id="@+id/search_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
-
-        </LinearLayout>
-
-        -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/half_padding"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/ganre"
-                android:textSize="16sp"/>
-
-            <Spinner
-                android:id="@+id/search_genre"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/year"
-                android:textSize="16sp"/>
-
-            <Spinner
-                android:id="@+id/search_year"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <EditText
-                android:id="@+id/search_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/half_padding"/>
-
-            <ImageButton
-                android:id="@+id/search_button"
-                android:layout_width="@dimen/squre_button_size"
-                android:layout_height="@dimen/squre_button_size"
-                android:src="@android:drawable/ic_menu_search"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center"/>
-
-            <ImageButton
-                android:id="@+id/search_all_button"
-                android:layout_width="@dimen/squre_button_size"
-                android:layout_height="@dimen/squre_button_size"
-                android:visibility="gone"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-    </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/movies_swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movies_recycler"
@@ -191,4 +88,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -32,7 +32,6 @@ public class Movie implements Serializable {
     public int reviews_count;
     public int trailers_count;
     public int photos_count;
-    public boolean is3d;
 
     public String getFilmNameFromUrl() {
         String n = "";

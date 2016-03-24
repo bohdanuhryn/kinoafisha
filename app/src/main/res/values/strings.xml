@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">kinoafisha</string>
     <string name="search_films">Поиск фильмов</string>
+    <string name="catlog">Каталог</string>
+    <string name="kinoafisha">Киноафиша</string>
     <string name="city">Город</string>
     <string name="date">Дата</string>
     <string name="cinema">Кинотеатр</string>
     <string name="ganre">Жанр</string>
     <string name="year">Год</string>
+    <string name="details">Описание</string>
     <string name="cinemas">Кинотеатры</string>
     <string name="comments">Коментарии</string>
 

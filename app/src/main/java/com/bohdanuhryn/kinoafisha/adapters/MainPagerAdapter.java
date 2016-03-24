@@ -8,32 +8,30 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.bohdanuhryn.kinoafisha.R;
 import com.bohdanuhryn.kinoafisha.fragments.CommentsFragment;
 import com.bohdanuhryn.kinoafisha.fragments.DetailsFragment;
+import com.bohdanuhryn.kinoafisha.fragments.KinoafishaFragment;
+import com.bohdanuhryn.kinoafisha.fragments.MoviesSearchFragment;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
 import com.bohdanuhryn.kinoafisha.model.data.Movie;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
  */
-public class MoviePagerAdapter extends FragmentStatePagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
-    private Movie movie;
 
-    public MoviePagerAdapter(Context context, FragmentManager fm, Movie movie) {
+    public MainPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
-        this.movie = movie;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch(position) {
             case 0:
-                return DetailsFragment.newInstance(movie);
+                return KinoafishaFragment.newInstance();
             case 1:
-                return SessionsFragment.newInstance(movie.id);
-            case 2:
-                return CommentsFragment.newInstance(movie);
+                return MoviesSearchFragment.newInstance();
         }
         return null;
     }
@@ -42,17 +40,15 @@ public class MoviePagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch(position) {
             case 0:
-                return context.getString(R.string.details);
+                return context.getString(R.string.kinoafisha);
             case 1:
-                return context.getString(R.string.cinemas);
-            case 2:
-                return context.getString(R.string.comments);
+                return context.getString(R.string.catlog);
         }
         return "";
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 }

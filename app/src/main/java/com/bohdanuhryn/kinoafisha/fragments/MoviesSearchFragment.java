@@ -68,7 +68,7 @@ public class MoviesSearchFragment extends Fragment {
     private MovieSearchParams searchParams;
     private ArrayList<Movie> moviesArray;
 
-    private OnMainFragmentListener mainFragmentListener;
+    private MainFragment.OnMainFragmentListener mainFragmentListener;
 
     public static MoviesSearchFragment newInstance() {
         MoviesSearchFragment fragment = new MoviesSearchFragment();
@@ -100,7 +100,7 @@ public class MoviesSearchFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            mainFragmentListener = (OnMainFragmentListener) context;
+            mainFragmentListener = (MainFragment.OnMainFragmentListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnMainFragmentListener");
@@ -294,9 +294,5 @@ public class MoviesSearchFragment extends Fragment {
         if (searchParams == null) {
             searchParams = new MovieSearchParams();
         }
-    }
-
-    public interface OnMainFragmentListener {
-        public void startMovieActivity(Movie movie);
     }
 }
