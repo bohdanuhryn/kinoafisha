@@ -32,4 +32,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'com.google.android.gms:play-services:8.1.0'
+    compile 'com.vk:androidsdk:1.6.5'
 }

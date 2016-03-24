@@ -8,8 +8,11 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
@@ -44,10 +47,14 @@ public interface IKinoApi {
 
     @FormUrlEncoded
     @POST("/ajax/comment/film/{film_name}")
-    Call<Comment> postComment(
+    Call<ResponseBody> postComment(
+            @Header("Cookie") String cookieValues,
             @Path("film_name") String filmName,
             @Field("response_to") String responseTo,
             @Field("comments") String comments
     );
+
+    @GET("/mdauth/comeback/vkontakte")
+    Call<ResponseBody> getAuth(@Query("code") String code);
 
 }

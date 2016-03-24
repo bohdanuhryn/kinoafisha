@@ -1,14 +1,25 @@
 package com.bohdanuhryn.kinoafisha;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import com.bohdanuhryn.kinoafisha.client.KinoManager;
 import com.bohdanuhryn.kinoafisha.fragments.MovieFragment;
 import com.bohdanuhryn.kinoafisha.fragments.SessionsFragment;
 import com.bohdanuhryn.kinoafisha.model.data.Cinema;
 import com.bohdanuhryn.kinoafisha.model.data.Movie;
+
+import butterknife.Bind;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BohdanUhryn on 11.03.2016.
@@ -62,4 +73,9 @@ public class MovieActivity extends AppCompatActivity
         fm.beginTransaction().replace(R.id.fragment_layout, fragment, MovieFragment.TAG).commit();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        fragment.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

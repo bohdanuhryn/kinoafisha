@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">kinoafisha</string>
+
+    <integer name="com_vk_sdk_AppId">4978448</integer>
+
     <string name="search_films">Поиск фильмов</string>
     <string name="city">Город</string>
     <string name="date">Дата</string>

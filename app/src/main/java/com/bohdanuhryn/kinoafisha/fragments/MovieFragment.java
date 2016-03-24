@@ -1,5 +1,6 @@
 package com.bohdanuhryn.kinoafisha.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -56,6 +57,8 @@ public class MovieFragment extends Fragment {
     @Bind(R.id.movie_tabs)
     TabLayout movieTabs;
 
+    private MoviePagerAdapter adapter;
+
     private Movie movie;
 
     public static MovieFragment newInstance(Movie movie) {
@@ -108,9 +111,16 @@ public class MovieFragment extends Fragment {
     }
 
     private void setupMoviePager() {
-        MoviePagerAdapter adapter = new MoviePagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), movie);
+        adapter = new MoviePagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), movie);
         moviePager.setAdapter(adapter);
         movieTabs.setTabsFromPagerAdapter(adapter);
         moviePager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabs));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        adapter.getItem(0).onActivityResult(requestCode, resultCode, data);
+        adapter.getItem(1).onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

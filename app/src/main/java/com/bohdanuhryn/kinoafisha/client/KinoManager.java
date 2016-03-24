@@ -6,6 +6,12 @@ import com.bohdanuhryn.kinoafisha.model.responses.CommentsList;
 import com.bohdanuhryn.kinoafisha.model.responses.MoviesList;
 import com.bohdanuhryn.kinoafisha.model.responses.SessionsList;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -25,7 +31,24 @@ public class KinoManager {
     private static final String QUERY_NAME_PARAM = "name";
     private static final String QUERY_SORT_PARAM = "sort";
 
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
+    private static Retrofit.Builder builder =
+            new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create());
+
     private static Retrofit retrofit;
+
+    private static String token;
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String set) {
+        token = set;
+    }
 
     public static boolean init() {
         if (retrofit == null) {
@@ -71,6 +94,24 @@ public class KinoManager {
         if (init()) {
             IKinoApi apiService = retrofit.create(IKinoApi.class);
             call = apiService.getMovieCommentsList(film, page);
+        }
+        return call;
+    }
+
+    public static Call<ResponseBody> postComment(String film, String responseTo, String comments) {
+        Call<ResponseBody> call = null;
+        if (init()) {
+            IKinoApi apiService = retrofit.create(IKinoApi.class);
+            call = apiService.postComment(token == null ? "" : "kohanasession=" + token, film, responseTo, comments);
+        }
+        return call;
+    }
+
+    public static Call<ResponseBody> getAuth(String code) {
+        Call<ResponseBody> call = null;
+        if (init()) {
+            IKinoApi apiService = retrofit.create(IKinoApi.class);
+            call = apiService.getAuth(code);
         }
         return call;
     }

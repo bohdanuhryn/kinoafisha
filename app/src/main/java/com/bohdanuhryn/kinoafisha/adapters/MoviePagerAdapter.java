@@ -18,19 +18,24 @@ public class MoviePagerAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private Movie movie;
 
+    private CommentsFragment commentsFragment;
+    private SessionsFragment sessionsFragment;
+
     public MoviePagerAdapter(Context context, FragmentManager fm, Movie movie) {
         super(fm);
         this.context = context;
         this.movie = movie;
+        this.commentsFragment = CommentsFragment.newInstance(movie);
+        this.sessionsFragment = SessionsFragment.newInstance(movie.id);
     }
 
     @Override
     public Fragment getItem(int position) {
         switch(position) {
             case 0:
-                return SessionsFragment.newInstance(movie.id);
+                return sessionsFragment;
             case 1:
-                return CommentsFragment.newInstance(movie);
+                return commentsFragment;
         }
         return null;
     }
