@@ -37,7 +37,8 @@
                 android:id="@+id/sessions_date_button"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@android:drawable/ic_menu_my_calendar"/>
+                android:src="@mipmap/ic_calendar"
+                android:background="@android:color/transparent"/>
 
             <TextView
                 android:id="@+id/sessions_date"

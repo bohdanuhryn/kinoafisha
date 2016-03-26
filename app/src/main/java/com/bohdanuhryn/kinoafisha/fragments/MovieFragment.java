@@ -80,5 +80,21 @@ public class MovieFragment extends Fragment {
         moviePager.setAdapter(adapter);
         movieTabs.setTabsFromPagerAdapter(adapter);
         moviePager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabs));
+        movieTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                moviePager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }

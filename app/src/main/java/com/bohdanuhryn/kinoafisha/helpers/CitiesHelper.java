@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by BohdanUhryn on 19.03.2016.
@@ -45,13 +46,25 @@ public class CitiesHelper {
         return cities;
     }
 
+    private static Location getLastKnownLocation(Context context) {
+        LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        List<String> providers = locationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location l = locationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
+    }
+
     public static int getNearestCity(Context context) {
         getCities(context);
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        if (lastKnownLocation == null) {
-            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        }
+        Location lastKnownLocation = getLastKnownLocation(context);
         City nearestCity = null;
         int position = 0;
         double minDist = Double.MAX_VALUE;

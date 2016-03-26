@@ -244,6 +244,7 @@ public class MoviesSearchFragment extends Fragment {
 
     private void reloadFilms() {
         searchParams.offset = 0;
+        searchParams.limit = 10;
         moviesSwipeRefreshLayout.setRefreshing(true);
         KinoManager.getMoviesList(searchParams).enqueue(new Callback<MoviesList>() {
             @Override
@@ -271,6 +272,9 @@ public class MoviesSearchFragment extends Fragment {
             @Override
             public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
                 MoviesList moviesList = response.body();
+                if (moviesList.count < moviesArray.size() + moviesList.result.size()) {
+                    searchParams.limit = 0;
+                }
                 if (moviesList.succes) {
                     moviesArray.addAll(moviesList.result);
                     moviesAdapter.notifyDataSetChanged();

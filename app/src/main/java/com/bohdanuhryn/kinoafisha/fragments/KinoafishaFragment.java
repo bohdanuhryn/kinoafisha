@@ -63,9 +63,9 @@ public class KinoafishaFragment extends Fragment {
     private DatePickerDialog dateDialog;
     private SimpleDateFormat dateFormatter;
 
-    private int limit;
+    private int limit = 9999;
     private int offset;
-    private long date;
+    private String date;
     private long city;
     private ArrayList<Movie> kinoafishaArray;
     private ArrayList<City> citiesArray;
@@ -86,7 +86,6 @@ public class KinoafishaFragment extends Fragment {
         ButterKnife.bind(this, rootView);
         setupKinoafishaRecyclerView();
         setupKinoafishaAdapter();
-        setupEndlessRecycler();
         setupSwipeRefreshLayout();
         setupCitySpinner();
         setupDateDialog();
@@ -130,18 +129,6 @@ public class KinoafishaFragment extends Fragment {
         kinoafishaRecycler.setAdapter(kinoafishaAdapter);
     }
 
-    private void setupEndlessRecycler() {
-        kinoafishaRecycler.setOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-
-            @Override
-            public void onLoadMore(int current_page) {
-                if (kinoafishaArray.size() >= offset) {
-                    loadNewFilms();
-                }
-            }
-        });
-    }
-
     private void setupSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -178,7 +165,7 @@ public class KinoafishaFragment extends Fragment {
         current.set(Calendar.MINUTE, 0);
         current.set(Calendar.SECOND, 0);
         current.set(Calendar.MILLISECOND, 0);
-        date = current.getTimeInMillis() / 1000;
+        date = dateFormatter.format(current.getTime());
         dateView.setText(dateFormatter.format(current.getTime()));
         dateDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -189,7 +176,7 @@ public class KinoafishaFragment extends Fragment {
                 newDate.set(Calendar.MINUTE, 0);
                 newDate.set(Calendar.SECOND, 0);
                 newDate.set(Calendar.MILLISECOND, 0);
-                date = newDate.getTimeInMillis() / 1000;
+                date = dateFormatter.format(newDate.getTime());
                 dateView.setText(dateFormatter.format(newDate.getTime()));
                 reloadFilms();
             }
@@ -215,7 +202,6 @@ public class KinoafishaFragment extends Fragment {
                 if (result.succes) {
                     kinoafishaArray = result.result;
                     setupKinoafishaAdapter();
-                    setupEndlessRecycler();
                 }
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -223,28 +209,6 @@ public class KinoafishaFragment extends Fragment {
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
                 Toast.makeText(getActivity(), "Cannot reload data! " + t.getMessage(), Toast.LENGTH_LONG).show();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-    }
-
-    private void loadNewFilms() {
-        offset += limit;
-        KinoManager.getKinoafishaList(limit, offset, date, city).enqueue(new Callback<MoviesList>() {
-            @Override
-            public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
-                MoviesList moviesList = response.body();
-                if (moviesList.succes) {
-                    kinoafishaArray.addAll(moviesList.result);
-                    kinoafishaAdapter.notifyDataSetChanged();
-                }
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onFailure(Call<MoviesList> call, Throwable t) {
-                offset -= limit;
-                Toast.makeText(getActivity(), "Cannot load new data! " + t.getMessage(), Toast.LENGTH_LONG).show();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

@@ -54,13 +54,12 @@ public class KinoManager {
         return call;
     }
 
-    public static Call<MoviesList> getKinoafishaList(int limit, int offset, long date, long city) {
+    public static Call<MoviesList> getKinoafishaList(int limit, int offset, String date, long city) {
         Call<MoviesList> call = null;
         if (init()) {
             IKinoApi apiService = retrofit.create(IKinoApi.class);
-            String ds = date == 0 ? "0" : String.valueOf(date);
             String cs = city == 0 ? "0" : String.valueOf(city);
-            call = apiService.getKinoafishaList(limit, offset, "", ds, cs, "");
+            call = apiService.getKinoafishaList(limit, offset, "all", date, cs, "date");
         }
         return call;
     }
